@@ -4,13 +4,11 @@ if (process.env.ENVIRONMENT !== "production") {
   dotenv.config();
 }
 
-const { spaceId, accessToken } = process.env;
-
 module.exports = {
   siteMetadata: {
-    title: `Rohit Gupta`,
+    title: `Kate Chrisman`,
     description: `Personal Site`,
-    author: `@rohitguptab`
+    author: `@katerchrisman`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,8 +22,9 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        spaceId,
-        accessToken
+        spaceId: accessToken: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        host: process.env.CONTENTFUL_HOST
       }
     },
     `gatsby-transformer-sharp`,
@@ -34,8 +33,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Rohit Gupta`,
-        short_name: `Rohit Gupta`,
+        name: `Kate Chrisman`,
+        short_name: `Kate Chrisman`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#333`,
