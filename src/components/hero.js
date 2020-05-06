@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import Img from "gatsby-image";
 
-export default class Banner extends Component {
+export default class Hero extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div className="banner">
+      <div className="banner" id="Home">
         <Img
-          fixed={data.bannerImage.fluid}
+          fluid={data.heroImage.fluid}
           objectFit="cover"
           objectPosition="50% 50%"
         />
         <div className="container">
           <div className="banner-details">
-            <span>Hello...</span>
-            <h1>I'm {data.designation}.</h1>
+            <h1>{data.headline}</h1>
             <ul className="sub-data">
-              {data.bannerList.map((item, index) => {
+              {data.tags.map((item, index) => {
                 return <li key={index}>{item}</li>;
               })}
             </ul>

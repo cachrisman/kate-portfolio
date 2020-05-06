@@ -17,34 +17,52 @@ const Layout = ({ children, header }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
-        contentfulSiteInformation {
-          siteName
-          siteDescription
+        contentfulPage(slug: {eq: "/"}) {
+          title
           logo {
             file {
               url
             }
           }
-          menus
+          sections {
+            ... on ContentfulSectionHeroImage {
+              name
+            }
+            ... on ContentfulSectionAboutMe {
+              name
+            }
+            ... on ContentfulSectionFeaturedArticles {
+              name
+            }
+            ... on ContentfulSectionArticleList { 
+              name
+            }
+            ... on ContentfulSectionPhotos {
+              name
+            }
+            ... on ContentfulSectionContactMe {
+              name
+            }
+          }
         }
       }
     `}
     
     render={data => (
-      <>
+      <div>
         <Header
-          data={data.contentfulSiteInformation}
-          siteTitle={data.contentfulSiteInformation.siteName}
+          data={data.contentfulPage}
+          siteTitle={data.contentfulPage.title}
           header={header}
         />
         <div>
-          <main id="home">{children}</main>
+          <main>{children}</main>
         </div>
-        <Footer siteName={data.contentfulSiteInformation.siteName} />
-      </>
+        <Footer siteName={data.contentfulPage.title} />
+      </div>
     )}
   />
-);
+)
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired

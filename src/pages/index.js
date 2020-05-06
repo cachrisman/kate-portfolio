@@ -2,181 +2,82 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
+// import SEO from "../components/seo";
 
-import Banner from "../components/banner";
+import Hero from "../components/hero";
 import About from "../components/about";
-import Service from "../components/service";
-import Work from "../components/work";
-import Blogs from "../components/blogs";
-import Testimonial from "../components/testimonial";
-import Contact from "../components/contact";
+import FeaturedArticles from "../components/featuredArticles";
+import ArticleList from "../components/articleList";
 import Photos from "../components/photos";
+import Contact from "../components/contact";
 
 const IndexPage = ({ data }) => (
   <Layout header="home">
-    <SEO
-      title={data.contentfulAboutMe.designation}
-      keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`]}
-    />
-    <Banner data={data.contentfulAboutMe}></Banner>
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "About")
-      .map(t => {
-        return <About data={data.contentfulAboutMe}></About>;
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Service")
-      .map(t => {
-        return <Service data={data.allContentfulService}></Service>;
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Blogs")
-      .map(t => {
-        return <Blogs data={data.allContentfulBlogs}></Blogs>;
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Work")
-      .map(t => {
-        return <Work data={data.allContentfulWorks}></Work>;
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Testimonials")
-      .map(t => {
-        return (
-          <Testimonial data={data.allContentfulTestimonials}></Testimonial>
-        );
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Photos")
-      .map(t => {
-        return <Photos data={data.contentfulPhotos}></Photos>;
-      })}
-
-    {data.contentfulSiteInformation.menus
-      .filter(item => item === "Contact")
-      .map(t => {
-        return <Contact data={data.contentfulAboutMe.gmail}></Contact>;
-      })}
+    {/* <SEO
+      title={data.contentfulPage.title}
+      keywords={data.contentfulPage.tags}
+    /> */}
+    <Hero data={data.contentfulPage.sections[0]}></Hero>
+    <About data={data.contentfulPage.sections[1]}></About>
+    <FeaturedArticles data={data.contentfulPage.sections[2]}></FeaturedArticles>
+    <ArticleList data={data.contentfulPage.sections[3]}></ArticleList>
+    <Photos data={data.contentfulPage.sections[4]}></Photos>
+    <Contact data={data.contentfulPage.sections[5]}></Contact>
   </Layout>
 );
 
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query AboutQuery {
-    contentfulAboutMe {
-      name
-      photo {
-        file {
-          url
-        }
-        fluid {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
-      }
-      designation
-      age
-      facebook
-      github
-      gmail
-      id
-      instagram
-      linkdin
-      twitter
-      location
-      description {
-        childMarkdownRemark {
-          html
-        }
-      }
-      bannerImage {
-        fluid(maxWidth: 1500) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-        }
-      }
-      bannerList
-    }
-    allContentfulService {
-      edges {
-        node {
-          title
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
-      }
-    }
-    allContentfulBlogs(limit: 5, sort: {fields: createdAt, order: DESC}) {
-      edges {
-        node {
-          title
-          slug
-          featureImage {
-            fluid(maxWidth: 600) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
-          }
-          createdAt
-        }
-      }
-    }
-    allContentfulTestimonials {
-      edges {
-        node {
+  query HomePageQuery {
+    contentfulPage(slug: {eq: "/"}) {
+      title
+      sections {
+        __typename
+        ... on ContentfulSectionHeroImage {
           name
-          subTitle
-          description {
-            childMarkdownRemark {
-              html
+          heroImage {
+            fluid {
+              ...GatsbyContentfulFluid_withWebp
+            }
+            file {
+              url
             }
           }
-          avatarImage {
-            fluid(maxWidth: 200) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-            }
+          headline
+          tags
+          socialMediaLinks {
+            name
+            type
+            profileUrl
           }
         }
-      }
-    }
-    allContentfulWorks {
-      edges {
-        node {
-          siteName
-          url
-          image {
+        ... on ContentfulSectionAboutMe {
+          name
+          photo {
+            fluid {
+              ...GatsbyContentfulFluid_withWebp
+            }
+          }
+          content {
+            json
+          }
+        }
+        ... on ContentfulSectionFeaturedArticles {
+          name
+          featuredArticles {
+            ...articleQuery
+          }
+        }
+        ... on ContentfulSectionArticleList {
+          name
+          articles {
+            ...articleQuery
+          }
+        }
+        ... on ContentfulSectionPhotos {
+          name
+          photos {
             fluid(maxWidth: 600) {
               base64
               aspectRatio
@@ -188,23 +89,37 @@ export const pageQuery = graphql`
             }
           }
         }
-      }
-    }
-    contentfulPhotos {
-      photos {
-        fluid(maxWidth: 600) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
+        ... on ContentfulSectionContactMe {
+          name
+          content {
+            json
+          }
         }
       }
     }
-    contentfulSiteInformation {
-      menus
+  }
+  fragment articleQuery on ContentfulArticle {
+    title
+    url
+    category {
+      name
+    }
+    image {
+      file {
+        url
+      }
+    }
+    description {
+      childMarkdownRemark {
+        html
+      }
+      description
+    }
+    backstory {
+      childMarkdownRemark {
+        html
+      }
+      backstory
     }
   }
 `;
