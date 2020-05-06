@@ -24,7 +24,9 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        host: process.env.CONTENTFUL_HOST
+        host: process.env.CONTENTFUL_HOST,
+        environment: process.env.CONTENTFUL_ENV,
+        useNameForId: false,
       }
     },
     `gatsby-transformer-sharp`,
@@ -40,7 +42,6 @@ module.exports = {
         theme_color: `#333`,
         icon: `src/images/fev_icon.png` // This path is relative to the root of the site.
       }
-    }, // To learn more, visit: https://gatsby.dev/offline // this (optional) plugin enables Progressive Web App + Offline functionality
-    `gatsby-plugin-offline`
+    }
   ]
 };

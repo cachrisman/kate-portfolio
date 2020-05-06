@@ -35,10 +35,10 @@ export default class Photos extends Component {
     const { data } = this.props;
 
     return (
-      <div className="photos section" id="Photos">
+      <div className="photos section" id={data.name}>
         <div className="container">
           <div className="section-head">
-            <h2>Photos</h2>
+            <h2>{data.name}</h2>
           </div>
           <div className="slider-section photos-list">
             <Slider {...settings}>
@@ -46,7 +46,7 @@ export default class Photos extends Component {
                 return (
                   <div key={index} className="photos-item">
                     <Img
-                      fixed={item.fluid}
+                      fluid={item.fluid}
                       objectFit="cover"
                       objectPosition="50% 50%"
                     />
@@ -62,6 +62,6 @@ export default class Photos extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
