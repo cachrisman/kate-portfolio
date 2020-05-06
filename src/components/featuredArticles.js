@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "gatsby";
 
 export default class FeaturedArticles extends Component {
   render() {
