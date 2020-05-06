@@ -33,16 +33,18 @@ export default class Contact extends Component {
     // but set the feedback message to show the error state.
     axios(axiosOptions)
       .then(response => {
+        console.log(response)
         this.setState({
           feedbackMsg: "Thank you! I'll review your message and get back to you soon!",
         })
         this.domRef.current.reset()
       })
-      .catch(err =>
+      .catch(err => {
+        console.log(err)
         this.setState({
           feedbackMsg: "Form could not be submitted. Refresh the page to try again.",
         })
-      )
+      })
   }
 
   render() {
