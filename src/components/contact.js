@@ -21,6 +21,7 @@ export default class Contact extends Component {
 
     // Set options for axios. The URL we're submitting to
     // (this.props.location.pathname) is the current page.
+    console.log(this.props)
     const axiosOptions = {
       url: this.props.location.pathname,
       method: "post",
