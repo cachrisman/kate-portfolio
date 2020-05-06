@@ -21,9 +21,8 @@ export default class Contact extends Component {
 
     // Set options for axios. The URL we're submitting to
     // (this.props.location.pathname) is the current page.
-    console.log(this.props)
     const axiosOptions = {
-      url: this.props.location.pathname,
+      url: window.location.pathname,
       method: "post",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       data: qs.stringify(formData),
@@ -61,6 +60,7 @@ export default class Contact extends Component {
             <div className="left col-md-6 col-lg-6">
               <div className="contact-form">
               {this.state.feedbackMsg && <p>{this.state.feedbackMsg}</p>}
+              {!this.state.feedbackMsg &&
                 <form ref={this.domRef} name="Contact Form" method="POST" data-netlify="true" onSubmit={event => this.handleSubmit(event)}>
                   <input ref="form-name" type="hidden" name="form-name" value="Contact Form" />
                   <div>
@@ -81,7 +81,7 @@ export default class Contact extends Component {
                   <div>
                     <button type="submit">Send</button>
                   </div>
-                </form>
+                </form>}
               </div>
             </div>
           </div>
