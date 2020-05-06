@@ -33,14 +33,15 @@ export default class Contact extends Component {
     // but set the feedback message to show the error state.
     axios(axiosOptions)
       .then(response => {
-        console.log(response)
+        console.log("success!", response)
+        console.log(this.domRef)
+        this.domRef.current.reset()
         this.setState({
           feedbackMsg: "Thank you! I'll review your message and get back to you soon!",
         })
-        this.domRef.current.reset()
       })
       .catch(err => {
-        console.log(err)
+        console.log("error!", err)
         this.setState({
           feedbackMsg: "Form could not be submitted. Refresh the page to try again.",
         })
@@ -61,7 +62,7 @@ export default class Contact extends Component {
             </div>
             <div className="left col-md-6 col-lg-6">
               <div className="contact-form">
-              {this.state.feedbackMsg && <p>{this.state.feedbackMsg}</p>}
+              {this.state.feedbackMsg && <><p>{this.state.feedbackMsg}</p><button className="reset" type="button" onClick={() => {this.setState({feedbackMsg: null})}}>Reset</button></>}
               {!this.state.feedbackMsg &&
                 <form ref={this.domRef} name="Contact Form" method="POST" data-netlify="true" onSubmit={event => this.handleSubmit(event)}>
                   <input ref="form-name" type="hidden" name="form-name" value="Contact Form" />
