@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import axios from "axios"
 import * as qs from "query-string"
+import { globalHistory } from "@reach/router"
 
 export default class Contact extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class Contact extends Component {
     // Set options for axios. The URL we're submitting to
     // (this.props.location.pathname) is the current page.
     const axiosOptions = {
-      url: window.location.pathname,
+      url: globalHistory.location.pathname,
       method: "post",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       data: qs.stringify(formData),
@@ -33,15 +34,12 @@ export default class Contact extends Component {
     // but set the feedback message to show the error state.
     axios(axiosOptions)
       .then(response => {
-        console.log("success!", response)
-        console.log(this.domRef)
         this.domRef.current.reset()
         this.setState({
           feedbackMsg: "Thank you! I'll review your message and get back to you soon!",
         })
       })
       .catch(err => {
-        console.log("error!", err)
         this.setState({
           feedbackMsg: "Form could not be submitted. Refresh the page to try again.",
         })

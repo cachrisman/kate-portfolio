@@ -17,12 +17,12 @@ const IndexPage = ({ data }) => (
       title={data.contentfulPage.title}
       keywords={data.contentfulPage.tags}
     /> */}
-    <Hero data={data.contentfulPage.sections[0]}></Hero>
-    <About data={data.contentfulPage.sections[1]}></About>
-    <FeaturedArticles data={data.contentfulPage.sections[2]}></FeaturedArticles>
-    <ArticleList data={data.contentfulPage.sections[3]}></ArticleList>
-    <Photos data={data.contentfulPage.sections[4]}></Photos>
-    <Contact data={data.contentfulPage.sections[5]}></Contact>
+    <Hero data={data.contentfulPage.sections[0]} />
+    <About data={data.contentfulPage.sections[1]} />
+    <FeaturedArticles data={data.contentfulPage.sections[2]} />
+    <ArticleList data={data.contentfulPage.sections[3]} />
+    <Photos data={data.contentfulPage.sections[4]} />
+    <Contact data={data.contentfulPage.sections[5]} />
   </Layout>
 );
 
