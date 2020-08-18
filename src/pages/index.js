@@ -2,8 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
-// import SEO from "../components/seo";
-
 import Hero from "../components/hero";
 import About from "../components/about";
 import FeaturedArticles from "../components/featuredArticles";
@@ -13,16 +11,22 @@ import Contact from "../components/contact";
 
 const IndexPage = ({ data }) => (
   <Layout header="home">
-    {/* <SEO
-      title={data.contentfulPage.title}
-      keywords={data.contentfulPage.tags}
-    /> */}
-    <Hero data={data.contentfulPage.sections[0]} />
-    <About data={data.contentfulPage.sections[1]} />
-    <FeaturedArticles data={data.contentfulPage.sections[2]} />
-    <ArticleList data={data.contentfulPage.sections[3]} />
-    <Photos data={data.contentfulPage.sections[4]} />
-    <Contact data={data.contentfulPage.sections[5]} />
+    {data.contentfulPage.sections.map((section, index) => {
+      if (section.__typename === "ContentfulSectionHeroImage")
+        return <Hero key={index} data={section} />
+      else if (section.__typename === "ContentfulSectionAboutMe")
+        return <About key={index} data={section} />
+      else if (section.__typename === "ContentfulSectionFeaturedArticles")
+        return <FeaturedArticles key={index} data={section} />
+      else if (section.__typename === "ContentfulSectionArticleList")
+        return <ArticleList key={index} data={section} />
+      else if (section.__typename === "ContentfulSectionPhotos")
+        return <Photos key={index} data={section} />
+      else if (section.__typename === "ContentfulSectionContactMe")
+        return <Contact key={index} data={section} />
+      else
+        return ''
+    })}
   </Layout>
 );
 
