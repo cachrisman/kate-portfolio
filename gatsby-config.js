@@ -7,8 +7,11 @@ if (process.env.ENVIRONMENT !== "production") {
 module.exports = {
   siteMetadata: {
     title: `Kate Chrisman`,
+    titleTemplate: "Kate Chrisman · %s",
     description: `Personal Site`,
-    author: `@katerchrisman`
+    url: `https://www.katerchrisman.com`,
+    image: "http://images.ctfassets.net/yh5jrcj4wfv8/x9s8fDzKs8zvvOjPu54iG/e0b6503b16be1d998c3aab1d44f78252/IMG_1254.jpg?w=350&h=550&fm=webp",
+    twitterUsername: `@katerchrisman`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -44,7 +47,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`
-    }
+      }
     },
     `gatsby-plugin-offline`
   ]

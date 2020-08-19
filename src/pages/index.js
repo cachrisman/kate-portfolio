@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 import Hero from "../components/hero";
 import About from "../components/about";
 import FeaturedArticles from "../components/featuredArticles";
@@ -20,6 +21,10 @@ const components = {
 
 const IndexPage = ({ data }) => (
   <Layout header="home">
+    <SEO
+      title={data.contentfulPage.title}
+      description={data.contentfulPage.seoDescription}
+    />
     {data.contentfulPage.sections.map((section, index) => {
       const Component = components[section.__typename]
       return <Component key={index} data={section}/>
@@ -33,6 +38,7 @@ export const pageQuery = graphql`
   query HomePageQuery {
     contentfulPage(slug: {eq: "/"}) {
       title
+      seoDescription
       sections {
         __typename
         ... on ContentfulSectionHeroImage {
