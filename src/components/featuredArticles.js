@@ -7,7 +7,7 @@ export default class FeaturedArticles extends Component {
       <div className="section featured-articles" id={data.name}>
         <div className="container">
           <div className="section-head">
-            <h2>Featured Articles</h2>
+            <h2>{data.name}</h2>
           </div>
           <div className="row">
             {data.featuredArticles.map((article, index) => {

@@ -7,7 +7,7 @@ export default class ArticleList extends Component {
       <div className="section article-list" id={data.name}>
         <div className="container">
           <div className="section-head">
-            <h2>Article List</h2>
+            <h2>{data.name}</h2>
           </div>
           <div className="row">
             {data.articles.map((article, index) => {
