@@ -37,12 +37,15 @@ module.exports = {
       options: {
         name: `Kate Chrisman`,
         short_name: `Kate Chrisman`,
+        description: `Kate Chrisman`,
+        lang: `en`,
+        display: `standalone`,
+        icon: `src/images/favicon.svg`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#333`,
-        icon: `src/images/fev_icon.png` // This path is relative to the root of the site.
-      }
+        background_color: `#ffffff`,
+        theme_color: `#ffffff`
     }
+    },
     `gatsby-plugin-offline`
   ]
 };
