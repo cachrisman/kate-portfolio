@@ -11,7 +11,6 @@ const SEO = ({ title, description, image }) => {
       site {
         siteMetadata {
           defaultTitle: title
-          titleTemplate
           defaultDescription: description
           siteUrl: url
           defaultImage: image
@@ -23,7 +22,6 @@ const SEO = ({ title, description, image }) => {
 
   const {
     defaultTitle,
-    titleTemplate,
     defaultDescription,
     siteUrl,
     defaultImage,
@@ -38,7 +36,7 @@ const SEO = ({ title, description, image }) => {
   }
 
   return (
-    <Helmet title={seo.title} titleTemplate={titleTemplate}>
+    <Helmet title={seo.title}>
       <link rel="canonical"             href={seo.url} />
       <meta name="description"          content={seo.description} />
       <meta name="image"                content={seo.image} />
