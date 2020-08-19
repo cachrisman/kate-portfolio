@@ -9,23 +9,20 @@ import ArticleList from "../components/articleList";
 import Photos from "../components/photos";
 import Contact from "../components/contact";
 
+const components = {
+  ContentfulSectionHeroImage: Hero,
+  ContentfulSectionAboutMe:   About,
+  ContentfulSectionFeaturedArticles: FeaturedArticles,
+  ContentfulSectionArticleList: ArticleList,
+  ContentfulSectionPhotos: Photos,
+  ContentfulSectionContactMe: Contact
+}
+
 const IndexPage = ({ data }) => (
   <Layout header="home">
     {data.contentfulPage.sections.map((section, index) => {
-      if (section.__typename === "ContentfulSectionHeroImage")
-        return <Hero key={index} data={section} />
-      else if (section.__typename === "ContentfulSectionAboutMe")
-        return <About key={index} data={section} />
-      else if (section.__typename === "ContentfulSectionFeaturedArticles")
-        return <FeaturedArticles key={index} data={section} />
-      else if (section.__typename === "ContentfulSectionArticleList")
-        return <ArticleList key={index} data={section} />
-      else if (section.__typename === "ContentfulSectionPhotos")
-        return <Photos key={index} data={section} />
-      else if (section.__typename === "ContentfulSectionContactMe")
-        return <Contact key={index} data={section} />
-      else
-        return ''
+      const Component = components[section.__typename]
+      return <Component key={index} data={section}/>
     })}
   </Layout>
 );
