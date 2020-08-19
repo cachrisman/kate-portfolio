@@ -18,11 +18,7 @@ export default class Header extends Component {
           <div className="header-main">
             <div className="logo">
               <Link to="/">
-                {/* {data.logo.file.url ? (
-                  <img src={data.logo.file.url} alt="logo" />
-                ) : ( */}
-                  <span>{data.title}</span>
-                {/* )} */}
+                <img className="logo-img" src={`${data.logo.file.url}?w=24&fm=png`} alt="logo" /><span>{data.title}</span>
               </Link>
             </div>
             <div
