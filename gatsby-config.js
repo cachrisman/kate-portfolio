@@ -9,7 +9,7 @@ module.exports = {
     title: `Kate Chrisman`,
     description: `Personal Site`,
     url: `https://www.katerchrisman.com`,
-    image: "http://images.ctfassets.net/yh5jrcj4wfv8/x9s8fDzKs8zvvOjPu54iG/e0b6503b16be1d998c3aab1d44f78252/IMG_1254.jpg?w=350&h=550&fm=webp",
+    image: "http://images.ctfassets.net/yh5jrcj4wfv8/x9s8fDzKs8zvvOjPu54iG/e0b6503b16be1d998c3aab1d44f78252/IMG_1254.jpg",
     twitterUsername: `@katerchrisman`,
   },
   plugins: [
