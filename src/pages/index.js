@@ -12,7 +12,7 @@ import Contact from "../components/contact";
 
 const components = {
   ContentfulSectionHeroImage: Hero,
-  ContentfulSectionAboutMe:   About,
+  ContentfulSectionAboutMe: About,
   ContentfulSectionFeaturedArticles: FeaturedArticles,
   ContentfulSectionArticleList: ArticleList,
   ContentfulSectionPhotos: Photos,
