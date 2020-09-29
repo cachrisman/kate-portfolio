@@ -3,11 +3,13 @@ import Img from "gatsby-image";
 
 const TagsListItem = (props) => <li>{props.tag}</li>
 const SocialMediaListItem = (props) => (
+/* eslint-disable-next-line jsx-a11y/anchor-has-content */
   <li><a
     className={`fab fa-${props.type.toLowerCase()}`}
     href={props.profileUrl}
     target="_blank"
     rel="noopener noreferrer"
+    aria-label={props.type.toLowerCase()}
     ></a>
   </li>
 ) 

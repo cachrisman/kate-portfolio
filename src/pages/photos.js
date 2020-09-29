@@ -35,7 +35,15 @@ export default class PhotosPage extends Component {
                   <li key={index} className="item">
                     <div
                       className="inner"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => {
+                        this.setState({
+                          activePopup: true,
+                          selectedItem: index
+                        });
+                      }}
+                      onKeyPress={() => {
                         this.setState({
                           activePopup: true,
                           selectedItem: index
@@ -56,25 +64,38 @@ export default class PhotosPage extends Component {
               <div className="rg-popup">
                 <span
                   className="popup-layer"
+                  role="button"
+                  tabIndex={0}
+                  title="Close"
                   onClick={() => {
                     this.setState({
                       activePopup: false
                     });
                   }}
-                ></span>
-
+                  onKeyPress={() => {
+                    this.setState({
+                      activePopup: false
+                    });
+                  }}
+                ><span className="sr-only">close</span>
+                </span>
                 <div className="popup-inner">
                   <i
                     className="fas fa-times"
+                    role="button"
+                    tabIndex={0}
+                    title="close"
                     onClick={() => {
                       this.setState({
                         activePopup: false
                       });
                     }}
-                  ></i>
-                  <img
-                    src={data.contentfulPhotos.photos[selectedItem].file.url}
-                    alt="popup-img"
+                    onKeyPress={() => {
+                      this.setState({
+                        activePopup: false
+                      });
+                    }}
+                  ><span className="sr-only">close</span></i>
                   />
                 </div>
               </div>

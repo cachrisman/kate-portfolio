@@ -22,8 +22,15 @@ export default class Header extends Component {
               </Link>
             </div>
             <div
+              role="button"
               className="responsive-menu"
+              tabIndex={0}
               onClick={() => {
+                this.setState({
+                  menu: !menu
+                });
+              }}
+              onKeyPress={() => {
                 this.setState({
                   menu: !menu
                 });
@@ -31,14 +38,22 @@ export default class Header extends Component {
             >
               <span></span>
             </div>
-              <div className="menu">
-                <ul
-                  onClick={() => {
-                    this.setState({
-                      menu: false
-                    });
-                  }}
-                >
+              <div 
+                role="button" 
+                className="menu"
+                tabIndex={0}
+                onClick={() => {
+                  this.setState({
+                    menu: false
+                  });
+                }}
+                onKeyPress={() => {
+                  this.setState({
+                    menu: false
+                  });
+                }}
+              >
+                <ul>
                   {data.sections.map((section, index) => {
                     return (
                       <li key={index}><Link to={`/#${section.name}`}>{section.name}</Link></li>
