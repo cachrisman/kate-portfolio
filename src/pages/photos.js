@@ -20,10 +20,7 @@ export default class PhotosPage extends Component {
 
     return (
       <Layout>
-        <SEO
-          title="Photos"
-          keywords={[`Rohit Gupta`, `Frontend Developer`, `Developer`, `Photo`]}
-        />
+        <SEO title={data.contentfulPhotos.title} />
         <div className="site-container blogs-page" id="Blogs">
           <div className="container">
             <div className="section-head">
@@ -51,7 +48,7 @@ export default class PhotosPage extends Component {
                       }}
                     >
                       <Img
-                        fixed={item.fluid}
+                        fluid={item.fluid}
                         objectFit="cover"
                         objectPosition="50% 50%"
                       />
@@ -96,6 +93,12 @@ export default class PhotosPage extends Component {
                       });
                     }}
                   ><span className="sr-only">close</span></i>
+                  <Img
+                    fluid={data.contentfulPhotos.photos[selectedItem].fluid}
+                    key={data.contentfulPhotos.photos[selectedItem].fluid.src}
+                    alt={data.contentfulPhotos.photos[selectedItem].title}
+                    imgStyle={{ objectFit: "contain" }}
+                    style={{ height: "100%" }}
                   />
                 </div>
               </div>
@@ -111,11 +114,10 @@ export default class PhotosPage extends Component {
 export const pageQuery = graphql`
   query PhotosPageQuery {
     contentfulPhotos {
+      title
       photos {
-        file {
-          url
-        }
-        fluid(maxWidth: 600) {
+        title
+        fluid {
           base64
           aspectRatio
           src
