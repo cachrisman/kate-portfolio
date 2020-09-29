@@ -15,13 +15,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`
-      }
-    },
-    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
@@ -42,7 +35,7 @@ module.exports = {
         description: `Kate Chrisman`,
         lang: `en`,
         display: `standalone`,
-        icon: `src/images/favicon.svg`,
+        icon: `public/favicon.svg`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`
